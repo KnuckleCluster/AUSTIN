@@ -8,6 +8,23 @@
     <title>AUSTIN</title>
 </head>
 <body>
+
+    <dialog class="modal" id="modal">
+        <div class="modal-content">
+            <h1 id="dtitle"></h1>
+            <p id="dabout"></p>
+            <h2>Lyrics</h2>
+            <p id="dlyrics"></p>
+            <h2>Song Audio</h2>
+            <audio id="daudio" controls controlsList="nodownload" src="audio/1.mp3">this is a song</audio>
+           
+            <div class="modalbtn">
+                <button id="close-modal">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+
     <header>
         <img src="imgs/posty-header.png" alt="header" class="headerimg">
     </header>
@@ -17,23 +34,23 @@
         </section>
         <section class="track-list">
             <h1>Track List</h1>
-            <ul><button>1. I Dont Understand</button></ul>
-            <ul><button>2. Something Real</button></ul>
-            <ul><button>3. Chemical</button></ul>
-            <ul><button>4. Novacandy</button></ul>
-            <ul><button>5. Mourning</button></ul>
-            <ul><button>6. Too Cool to Die</button></ul>
-            <ul><button>7. Sign Me Up</button></ul>
-            <ul><button>8. Socialite</button></ul>
-            <ul><button>9. Overdrive</button></ul>
-            <ul><button>10. Speedometer</button></ul>
-            <ul><button>11. Hold My Breath</button></ul>
-            <ul><button>12. Enough Is Enough</button></ul>
-            <ul><button>13. Texas Tea</button></ul>
-            <ul><button>14. Buyer Beware</button></ul>
-            <ul><button>15. Landmine</button></ul>
-            <ul><button>16. Green Thumb</button></ul>
-            <ul><button>17.  Laugh It Off</button></ul>
+            <ul><button id="song1">1. I Dont Understand</button></ul>
+            <ul><button id="song2">2. Something Real</button></ul>
+            <ul><button id="song3">3. Chemical</button></ul>
+            <ul><button id="song4">4. Novacandy</button></ul>
+            <ul><button id="song5">5. Mourning</button></ul>
+            <ul><button id="song6">6. Too Cool to Die</button></ul>
+            <ul><button id="song7">7. Sign Me Up</button></ul>
+            <ul><button id="song8">8. Socialite</button></ul>
+            <ul><button id="song9">9. Overdrive</button></ul>
+            <ul><button id="song10">10. Speedometer</button></ul>
+            <ul><button id="song11">11. Hold My Breath</button></ul>
+            <ul><button id="song12">12. Enough Is Enough</button></ul>
+            <ul><button id="song13">13. Texas Tea</button></ul>
+            <ul><button id="song14">14. Buyer Beware</button></ul>
+            <ul><button id="song15">15. Landmine</button></ul>
+            <ul><button id="song16">16. Green Thumb</button></ul>
+            <ul><button id="song17">17.  Laugh It Off</button></ul>
             
 
         </section>
@@ -41,5 +58,6 @@
     <footer>
         <img src="imgs/posty-footer.png" alt="footer" class="footerimg">
     </footer>
+    <script src="app.js"></script>
 </body>
 </html>
