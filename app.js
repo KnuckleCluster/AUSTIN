@@ -129,7 +129,7 @@ But towards the end of the song, he is talking to the hate in general.`,
 
 
 
-// Select buttons by their IDs
+
 const btn1 = document.querySelector('#song1');
 const btn2 = document.querySelector('#song2');
 const btn3 = document.querySelector('#song3');
@@ -148,7 +148,7 @@ const btn15 = document.querySelector('#song15');
 const btn16 = document.querySelector('#song16');
 const btn17 = document.querySelector('#song17');
 
-// Select the dialog box
+
 const modal = document.querySelector('.modal');
 const dialogTitle = document.getElementById("dtitle");
 const dialogAbout = document.getElementById("dabout");
@@ -160,23 +160,23 @@ songs.forEach(song => {
     song.audioLink = `audio/${song.id}.mp3`;
 });
 
-// Function to show dialog box with song details
+
 function showDialog(songId) {
-    // Find the corresponding song object
+
     const song = songs.find(song => song.id === songId);
 
-    // Populate the dialog box with song details
+
     if (song) {
         dialogTitle.textContent = song.title;
-        dialogAbout.textContent = song.about;
+        dialogAbout.textContent = song.about || "No available details yet."; 
         
-        audioPlayer.src = song.audioLink; // Set the audio source
+        audioPlayer.src = song.audioLink; 
 
-        modal.showModal(); // Show the dialog box
+        modal.showModal(); 
     }
 }
 
-// Close the dialog box when clicking outside of it
+
 modal.addEventListener('click', (event) => {
     if (event.target === closeModal) {
         audioPlayer.pause();
@@ -185,7 +185,7 @@ modal.addEventListener('click', (event) => {
 });
 
 
-// Add event listeners to each button
+
 btn1.addEventListener('click', () => showDialog(1));
 btn2.addEventListener('click', () => showDialog(2));
 btn3.addEventListener('click', () => showDialog(3));
