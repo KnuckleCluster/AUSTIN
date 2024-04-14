@@ -153,6 +153,7 @@ const modal = document.querySelector('.modal');
 const dialogTitle = document.getElementById("dtitle");
 const dialogAbout = document.getElementById("dabout");
 const closeModal = document.querySelector('#close-modal');
+const minimizeModal = document.querySelector('#minimize-modal');
 const dialogLyrics = document.querySelector('#dlyrics');
 const audioPlayer = document.querySelector('#daudio');
 
@@ -180,6 +181,12 @@ function showDialog(songId) {
 modal.addEventListener('click', (event) => {
     if (event.target === closeModal) {
         audioPlayer.pause();
+        modal.close();
+    }
+});
+
+modal.addEventListener('click', (event) => {
+    if (event.target === minimizeModal) {
         modal.close();
     }
 });
