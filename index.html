@@ -1,68 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="imgs/posty ico.ico">
-    <link rel="stylesheet" href="styles.css">
-    <title>AUSTIN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="imgs/posty ico.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <title>AUSTIN — a listening companion</title>
 </head>
 <body>
 
-    <dialog class="modal" id="modal">
-        <div class="modal-content">
-            <h1 id="dtitle"></h1>
-            <p id="dabout"></p>
-            <h2>Song Audio</h2>
-            <audio id="daudio" controls controlsList="nodownload" src="audio/1.mp3">this is a song</audio>
-           
-            <div class="modalbtn">
-                <button id="close-modal">Close</button> 
-                <button id="minimize-modal">Minimize</button>
-            </div>
-        </div>
-    </dialog>
+  <header class="hero">
+    <div class="hero__photo" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Post Malone · 2023</p>
+      <h1 class="hero__title">AUSTIN</h1>
+      <p class="hero__subtitle">
+        An unofficial listening companion — seventeen stops, one route.
+        Track meanings, context, and a way in to each song.
+      </p>
+    </div>
+  </header>
 
+  <main>
+    <section class="about">
+      <img src="imgs/about-photo.png" alt="Post Malone beside a pool, with the AUSTIN album icon" class="about__img" />
+      <div class="about__text">
+        <h2>About the record</h2>
+        <p>
+          <em>Austin</em> is Post Malone's fifth studio album, released July 28, 2023 —
+          his first self-titled project, named after his own given name. It trades the
+          trap-leaning sound of his earlier records for something more acoustic and
+          guitar-driven, and it's his first album with no featured artists. Across
+          seventeen tracks he works through fame, addiction, fatherhood, and
+          relationships that didn't survive any of it.
+        </p>
+      </div>
+    </section>
 
-    <header>
-        <img src="imgs/posty-header.png" alt="header" class="headerimg">
-    </header>
-    <main>
-        <section class="aboutimg">
-            <img src="imgs/about-album.png" alt="about the album">
-        </section>
-        <section class="track-list">
-            <h1>Track List</h1>
-            <ul><button id="song1">1. I Dont Understand</button></ul>
-            <ul><button id="song2">2. Something Real</button></ul>
-            <ul><button id="song3">3. Chemical</button></ul>
-            <ul><button id="song4">4. Novacandy</button></ul>
-            <ul><button id="song5">5. Mourning</button></ul>
-            <ul><button id="song6">6. Too Cool to Die</button></ul>
-            <ul><button id="song7">7. Sign Me Up</button></ul>
-            <ul><button id="song8">8. Socialite</button></ul>
-            <ul><button id="song9">9. Overdrive</button></ul>
-            <ul><button id="song10">10. Speedometer</button></ul>
-            <ul><button id="song11">11. Hold My Breath</button></ul>
-            <ul><button id="song12">12. Enough Is Enough</button></ul>
-            <ul><button id="song13">13. Texas Tea</button></ul>
-            <ul><button id="song14">14. Buyer Beware</button></ul>
-            <ul><button id="song15">15. Landmine</button></ul>
-            <ul><button id="song16">16. Green Thumb</button></ul>
-            <ul><button id="song17">17.  Laugh It Off</button></ul>
-            
+    <section class="route" aria-label="Track list">
+      <div class="route__header">
+        <h2>The route</h2>
+        <p>Pick a stop.</p>
+      </div>
+      <ol class="route__list" id="track-list"><!-- populated by app.js --></ol>
+    </section>
+  </main>
 
-        </section>
-    </main> 
-    <footer>
-        <div class="footertext">
-            <h2>no copyright infringement intended</h2>
-            <div>
-                <a href="https://github.com/KnuckleCluster"><img src="/imgs/git.png" alt="git" class="footerimg"></a>
-                <a href="https://knucklecluster.github.io/portfolio/"><img src="/imgs/web.png" alt="portfolio" class="footerimg"></a>
-            </div>
-        </div>
-    </footer>
-    <script src="app.js"></script>
+  <footer class="site-footer">
+    <p class="site-footer__note">
+      Fan-made listening companion. Not affiliated with Post Malone, Mercury
+      Records, or Republic Records. Playback happens through Spotify's own
+      embedded player — no audio is hosted here.
+    </p>
+    <div class="site-footer__links">
+      <a href="https://github.com/KnuckleCluster" aria-label="GitHub">
+        <img src="imgs/git.png" alt="" class="site-footer__icon" />
+      </a>
+      <a href="https://knucklecluster.github.io/portfolio/" aria-label="Portfolio">
+        <img src="imgs/web.png" alt="" class="site-footer__icon" />
+      </a>
+    </div>
+  </footer>
+
+  <!-- The "stop" panel — replaces the old <dialog> modal -->
+  <div class="stop" id="stop" hidden>
+    <div class="stop__scrim" id="stop-scrim"></div>
+    <div class="stop__panel" role="dialog" aria-modal="true" aria-labelledby="stop-title">
+      <button class="stop__close" id="stop-close" aria-label="Close">Close</button>
+
+      <p class="stop__mile" id="stop-mile"></p>
+      <h2 class="stop__title" id="stop-title"></h2>
+      <p class="stop__length" id="stop-length"></p>
+
+      <div class="stop__section">
+        <h3>The meaning</h3>
+        <p id="stop-meaning"></p>
+      </div>
+
+      <div class="stop__section">
+        <h3>Listen</h3>
+        <div id="stop-listen"><!-- embed or search links, populated by app.js --></div>
+      </div>
+
+      <div class="stop__section">
+        <h3>Read along</h3>
+        <p class="stop__lyrics-note">Full lyrics live on Genius, not here.</p>
+        <a id="stop-genius" class="stop__genius-link" target="_blank" rel="noopener">
+          Search this track on Genius →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="tracks.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
