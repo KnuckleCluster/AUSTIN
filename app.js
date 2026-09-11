@@ -43,13 +43,34 @@ function searchUrl(base, query) {
   return `${base}${encodeURIComponent(query)}`;
 }
 
+/**
+ * Accepts whatever someone pastes into tracks.js — a bare ID, a full
+ * open.spotify.com share link, an open.spotify.com/embed link, or a
+ * spotify:track:ID URI — and pulls out just the track ID.
+ */
+function extractSpotifyId(raw) {
+  if (!raw) return "";
+  const trimmed = String(raw).trim();
+
+  let match = trimmed.match(/spotify:track:([a-zA-Z0-9]+)/);
+  if (match) return match[1];
+
+  match = trimmed.match(/track\/([a-zA-Z0-9]+)/);
+  if (match) return match[1];
+
+  if (/^[a-zA-Z0-9]+$/.test(trimmed)) return trimmed;
+
+  return "";
+}
+
 function renderListenSection(track) {
-  if (track.spotifyId) {
+  const spotifyId = extractSpotifyId(track.spotifyId);
+
+  if (spotifyId) {
     stopListen.innerHTML = `
       <div class="listen-embed">
         <iframe
-          src="https://open.spotify.com/embed/track/${track.spotifyId}?theme=0"
-          loading="lazy"
+          src="https://open.spotify.com/embed/track/${spotifyId}?theme=0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         ></iframe>
       </div>
@@ -80,12 +101,14 @@ function openStop(id) {
   stopMeaning.textContent = track.meaning;
   stopGenius.href = searchUrl("https://genius.com/search?q=", `Post Malone ${track.title}`);
 
-  renderListenSection(track);
-
   lastFocused = document.activeElement;
   stopEl.hidden = false;
   document.body.style.overflow = "hidden";
   stopClose.focus();
+
+  // render the embed/links after the panel is visible, not before —
+  // an iframe built while its parent is still `hidden` can fail to load
+  renderListenSection(track);
 }
 
 function closeStop() {
